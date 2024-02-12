@@ -1,0 +1,27 @@
+-- CREATE EXTERNAL TABLE green_taxi_tripdata.2022_external_gcs
+-- OPTIONS (
+--   format = 'parquet',
+--   uris = ['gs://green_taxi_tripdata_2022/701114525a6e41edbafffc255bf2e699-0.parquet'] 
+-- );
+
+-- SELECT COUNT(DISTINCT(PULocationID))
+-- FROM `green_taxi_tripdata.2022`;
+
+-- SELECT COUNT(DISTINCT(PULocationID))
+-- FROM `green_taxi_tripdata.2022_external_gcs`;
+
+-- SELECT COUNT(fare_amount)
+-- FROM `green_taxi_tripdata.2022`
+-- WHERE fare_amount=0.0
+
+-- CREATE OR REPLACE TABLE green_taxi_tripdata.2022_partitioned_clustered 
+-- PARTITION BY lpep_pickup_date
+-- CLUSTER BY PULocationID AS 
+-- SELECT * FROM green_taxi_tripdata.2022_datetime;
+
+-- SELECT DISTINCT(PULocationID)
+-- FROM green_taxi_tripdata.2022_partitioned_clustered
+-- WHERE lpep_pickup_date BETWEEN '2022-06-01' AND '2022-06-30';
+
+SELECT COUNT(*) 
+FROM green_taxi_tripdata.2022_datetime
